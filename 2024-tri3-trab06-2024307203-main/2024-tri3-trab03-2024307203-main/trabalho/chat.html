@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bate-papo dos bichinhos</title>
+  <link rel="stylesheet" href="assets/chat.css">
+</head>
+
+<body>
+  <header>
+    <h1>Bate-papo dos bichinhos</h1>
+  </header>
+  
+  <main>
+  </main>
+  
+  <footer>
+    <input type="text" id="chatInput" placeholder="Mensagem">
+    <button id="sendBtn">Enviar</button>
+  </footer>
+  
+  <script>
+    const main = document.querySelector ('main')
+    const button = document.querySelector("button")
+    const input = document.querySelector("input")
+    
+    let currentNick = null
+    
+    function addMessage (content,nick,time) {
+      main.innerHTML += `
+   <div class="message ${currentNick == nick ? 'owner' : ''}">
+      <div class="content">${content}</div>
+      <div class="nick">${nick}</div>
+      <div class="time">${time}</div>
+    </div>
+   `
+    }
+    
+    const ws = new WebSocket('ws://192.168.120.53:4000') 
+    
+    ws.addEventListener("open", () => console.log('Conectado'))
+    ws.addEventListener("close", () => console.log('Conectado'))
+    
+    ws.addEventListener("message", (event) => {
+      const data = JSON.parse(event.data)
+      addMessage(data.message, data.nick, data.timestamp)
+    })
+    
+    button.addEventListener('click', () => {
+      const message = input.value
+      ws.send(message)
+      input.value = ''
+    })
+
+  </script>
+  
+</body>
+
+</html>

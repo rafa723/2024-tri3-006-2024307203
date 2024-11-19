@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    border: 0;
+  }
+  
+  header {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: #7748f8bd;
+  }
+
+  header h1 {
+    text-align: center;
+  }
+  
+  aside {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: #5e54ebc9;
+  }
+  
+  main {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: #ad3bdaa9;
+    padding: 1rem;
+  }
+
+  main img {
+    height: 99px;
+    width: 105px ;
+  }
+  
+  footer {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: #6736a7ce;
+  }
